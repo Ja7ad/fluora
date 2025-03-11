@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fluora - AI Toolkit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 10%; }
+            10% { background-position: 10% 20%; }
+            20% { background-position: 20% 30%; }
+            30% { background-position: 30% 40%; }
+            40% { background-position: 40% 50%; }
+            50% { background-position: 50% 60%; }
+            60% { background-position: 60% 70%; }
+            70% { background-position: 70% 80%; }
+            80% { background-position: 80% 90%; }
+            90% { background-position: 90% 100%; }
+            100% { background-position: 100% 90%; }
+            90% { background-position: 90% 80%; }
+            80% { background-position: 80% 70%; }
+            70% { background-position: 70% 60%; }
+            60% { background-position: 60% 50%; }
+            50% { background-position: 50% 40%; }
+            40% { background-position: 40% 30%; }
+            30% { background-position: 30% 20%; }
+            20% { background-position: 20% 10%; }
+            10% { background-position: 10% 0%; }
+        }
+
+        .animated-bg {
+            background: linear-gradient(-45deg, #00ffb3, #0099ff,  #ff00b3);
+            background-size: 400% 400%;
+            animation: gradientAnimation 60s ease infinite;
+            height: 57vh;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <nav class="fixed top-0 left-0 w-full bg-gray-950 bg-opacity-90 shadow-md z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white">Fluora</a>
+            <ul class="flex space-x-6 text-gray-300 font-medium">
+                <li><a href="#" class="hover:text-blue-400 transition">Home</a></li>
+                <li><a href="https://github.com/Ja7ad/fluora/releases" class="hover:text-blue-400 transition">Download</a></li>
+                <li><a href="https://github.com/Ja7ad/fluora" target="_blank" class="hover:text-blue-400 transition">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="relative w-full flex items-center justify-center text-center animated-bg">
+        <div class="absolute inset-0 flex flex-col justify-center items-center px-6">
+            <h1 class="text-4xl font-bold mb-4">AI-Powered Toolkit for Developers</h1>
+            <p class="text-lg text-gray-200 max-w-xl">Fluora helps you build, test, and deploy AI applications effortlessly.</p>
+            <div class="flex flex-col sm:flex-row items-center mt-6 space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="https://github.com/Ja7ad/fluora/releases" target="_blank" class="px-8 py-3 bg-blue-500 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-600 transition">
+                    Download Fluora
+                </a>
+                <a href="https://github.com/Ja7ad/fluora" target="_blank" class="px-8 py-3 bg-gray-800 text-white font-semibold rounded-lg shadow-lg hover:bg-gray-700 transition">
+                    Get Started
+                </a>
+            </div>
+            <div class="flex justify-center space-x-6 mt-4">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" class="w-10 h-10">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" alt="Windows" class="w-10 h-10">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg" alt="Mac" class="w-10 h-10">
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gray-800 text-center">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-white">Why Choose Fluora?</h2>
+            <p class="text-gray-400 mt-3">Fluora makes AI development simple, fast, and powerful.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+                <div class="p-6 bg-gray-700 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold">🚀 Fast & Scalable</h3>
+                    <p class="text-gray-300 mt-2">Optimized for high-performance AI workloads.</p>
+                </div>
+                <div class="p-6 bg-gray-700 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold">🔧 Fully Extensible</h3>
+                    <p class="text-gray-300 mt-2">Customizable AI instructions and models.</p>
+                </div>
+                <div class="p-6 bg-gray-700 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-semibold">🔒 Secure & Reliable</h3>
+                    <p class="text-gray-300 mt-2">Built with security and stability in mind.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="bg-gray-950 text-gray-400 text-center py-6">
+        <p>© 2025 Fluora. Built with ❤️ by Open-Source Contributors.</p>
+    </footer>
+
+</body>
+</html>
+
