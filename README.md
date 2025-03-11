@@ -1,6 +1,8 @@
 # Fluora 🚀
 An extensible AI toolkit built in **Go** to effortlessly create and deploy **generative AI tools** using structured instructions.
 
+[![asciicast](https://asciinema.org/a/707466.svg)](https://asciinema.org/a/707466)
+
 ## 🌟 Features
 - 📌 **AI Models Supported:** Currently supports **Google Gemini** models.
 - 🔄 **Extensible:** Easily add new AI providers and instructions.
