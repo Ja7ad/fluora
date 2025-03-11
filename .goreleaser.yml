@@ -4,46 +4,14 @@ builds:
     dir: ./
     binary: fluora
     env:
-      - CGO_ENABLED=0  # Keep CGO disabled for other platforms
+      - CGO_ENABLED=0
     goos:
       - linux
       - windows
       - darwin
-      - android
     goarch:
-      - "386"
       - amd64
       - arm
-      - arm64
-    goarm:
-      - "6"
-      - "7"
-    ignore:
-      - goos: linux
-        goarch: arm
-        goarm: "7"
-      - goos: windows
-        goarch: arm
-        goarm: "7"
-      - goos: android
-        goarch: arm
-        goarm: "6"
-      - goos: android
-        goarch: arm
-        goarm: "7"
-      - goos: android
-        goarch: "386"
-
-  - id: fluora_android
-    main: ./cmd/fluora/main.go
-    dir: ./
-    binary: fluora
-    env:
-      - CGO_ENABLED=1
-    goos:
-      - android
-    goarch:
-      - amd64
       - arm64
 
 archives:
