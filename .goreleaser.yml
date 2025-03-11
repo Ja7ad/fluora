@@ -12,11 +12,7 @@ builds:
       - android
     goarch:
       - amd64
-      - arm
       - arm64
-    goarm:
-      - "6"
-      - "7"
     ignore:
       - goos: linux
         goarch: arm
@@ -27,7 +23,9 @@ builds:
       - goos: android
         goarch: arm
         goarm: "7"
-
+      - goos: linux
+        goarch: arm
+        goarm: "6"
 archives:
   - builds:
       - fluora
