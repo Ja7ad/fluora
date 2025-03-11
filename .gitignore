@@ -23,3 +23,13 @@ go.work.sum
 
 # env file
 .env
+
+# build
+build/
+
+# IDE
+.idea
+.code
+
+# config
+config.yml

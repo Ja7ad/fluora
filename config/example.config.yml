@@ -1,0 +1,21 @@
+rest:
+  address: "127.0.0.1:8080"
+  origins:
+    - http://example.com
+
+ai:
+  - provider: "gemini"
+    api_key: ""
+    rate_limit: 100
+
+logger:
+  colorful: true
+  max_backups: 0
+  rotate_log_after_days: 1
+  compress: false
+  targets: ['console']
+  levels:
+    default: 'info'
+    _ai: 'warn'
+    _service: 'info'
+    _rest: 'error'

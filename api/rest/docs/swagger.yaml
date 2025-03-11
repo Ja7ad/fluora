@@ -1,0 +1,442 @@
+basePath: /
+definitions:
+  dto.CasualizeReq:
+    properties:
+      language:
+        type: string
+      model:
+        type: string
+      provider:
+        type: string
+      sentence:
+        type: string
+    type: object
+  dto.CasualizeResp:
+    properties:
+      casualized_sentence:
+        type: string
+      general:
+        $ref: '#/definitions/dto.Header'
+      original_sentence:
+        type: string
+    type: object
+  dto.ExpandReq:
+    properties:
+      language:
+        type: string
+      model:
+        type: string
+      provider:
+        type: string
+      sentence:
+        type: string
+    type: object
+  dto.ExpandResp:
+    properties:
+      expand_sentence:
+        type: string
+      general:
+        $ref: '#/definitions/dto.Header'
+      original_sentence:
+        type: string
+    type: object
+  dto.FormalizeReq:
+    properties:
+      language:
+        type: string
+      model:
+        type: string
+      provider:
+        type: string
+      sentence:
+        type: string
+    type: object
+  dto.FormalizeResp:
+    properties:
+      formalized_sentence:
+        type: string
+      general:
+        $ref: '#/definitions/dto.Header'
+      original_sentence:
+        type: string
+    type: object
+  dto.GrammarReq:
+    properties:
+      language:
+        type: string
+      model:
+        type: string
+      provider:
+        type: string
+      sentence:
+        type: string
+    type: object
+  dto.GrammarResp:
+    properties:
+      corrected:
+        type: string
+      general:
+        $ref: '#/definitions/dto.Header'
+      original:
+        type: string
+      word_suggestions:
+        additionalProperties:
+          type: string
+        type: object
+    type: object
+  dto.Header:
+    properties:
+      model:
+        type: string
+      provider:
+        type: string
+    type: object
+  dto.RewriteReq:
+    properties:
+      language:
+        type: string
+      model:
+        type: string
+      num_suggestions:
+        type: integer
+      provider:
+        type: string
+      sentence:
+        type: string
+      tone:
+        $ref: '#/definitions/dto.RewriteTone'
+    type: object
+  dto.RewriteResp:
+    properties:
+      general:
+        $ref: '#/definitions/dto.Header'
+      original_sentence:
+        type: string
+      rewritten_sentence:
+        type: string
+      suggestions:
+        items:
+          type: string
+        type: array
+    type: object
+  dto.RewriteTone:
+    enum:
+    - formal
+    - informal
+    - neutral
+    type: string
+    x-enum-varnames:
+    - Formal
+    - Informal
+    - Neutral
+  dto.ServiceListResp:
+    properties:
+      description:
+        type: string
+      providers:
+        additionalProperties:
+          additionalProperties:
+            type: object
+          type: object
+        type: object
+      route:
+        type: string
+      title:
+        type: string
+      version:
+        type: string
+    type: object
+  dto.ShortenReq:
+    properties:
+      language:
+        type: string
+      model:
+        type: string
+      provider:
+        type: string
+      sentence:
+        type: string
+    type: object
+  dto.ShortenResp:
+    properties:
+      general:
+        $ref: '#/definitions/dto.Header'
+      original_sentence:
+        type: string
+      shortened_sentence:
+        type: string
+    type: object
+  dto.WordChoiceReq:
+    properties:
+      language:
+        type: string
+      model:
+        type: string
+      num_suggestions:
+        type: integer
+      provider:
+        type: string
+      sentence:
+        type: string
+    type: object
+  dto.WordChoiceResp:
+    properties:
+      general:
+        $ref: '#/definitions/dto.Header'
+      original_sentence:
+        type: string
+      word_suggestions:
+        additionalProperties:
+          items:
+            type: string
+          type: array
+        type: object
+    type: object
+  errors.Errors:
+    properties:
+      code:
+        type: string
+      details:
+        additionalProperties:
+          type: string
+        type: object
+      message:
+        type: string
+      statusCode:
+        type: integer
+    type: object
+host: 127.0.0.1:8080
+info:
+  contact: {}
+  description: An extensible AI toolkit built in Go for generative AI applications.
+  title: Fluora API
+  version: "1.0"
+paths:
+  /textcraft:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve all available text transformation services
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/dto.ServiceListResp'
+            type: array
+      summary: List textcraft toolkits
+      tags:
+      - Textcraft
+  /textcraft/casualize:
+    post:
+      consumes:
+      - application/json
+      description: Modifies the text to sound more friendly and conversational.
+      parameters:
+      - description: Casualize request payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.CasualizeReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.CasualizeResp'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/errors.Errors'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/errors.Errors'
+      summary: Convert text into a casual tone
+      tags:
+      - Textcraft
+  /textcraft/expand:
+    post:
+      consumes:
+      - application/json
+      description: Enhances the sentence by making it more detailed and informative.
+      parameters:
+      - description: Expand request payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ExpandReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ExpandResp'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/errors.Errors'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/errors.Errors'
+      summary: Expand a sentence
+      tags:
+      - Textcraft
+  /textcraft/formalize:
+    post:
+      consumes:
+      - application/json
+      description: Converts informal text into a professional and formal tone
+      parameters:
+      - description: Formalize request payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.FormalizeReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.FormalizeResp'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/errors.Errors'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/errors.Errors'
+      summary: Formalize a sentence
+      tags:
+      - Textcraft
+  /textcraft/grammar:
+    post:
+      consumes:
+      - application/json
+      description: Fixes grammar mistakes while preserving the original style
+      parameters:
+      - description: Grammar correction request payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.GrammarReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.GrammarResp'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/errors.Errors'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/errors.Errors'
+      summary: Correct grammar mistakes
+      tags:
+      - Textcraft
+  /textcraft/rewrite:
+    post:
+      consumes:
+      - application/json
+      description: Suggests alternative phrasings while maintaining meaning.
+      parameters:
+      - description: Rewrite request payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.RewriteReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.RewriteResp'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/errors.Errors'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/errors.Errors'
+      summary: Rewrite a sentence
+      tags:
+      - Textcraft
+  /textcraft/shorten:
+    post:
+      consumes:
+      - application/json
+      description: Makes a sentence more concise while preserving its meaning
+      parameters:
+      - description: Shorten request payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ShortenReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.ShortenResp'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/errors.Errors'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/errors.Errors'
+      summary: Shorten a sentence
+      tags:
+      - Textcraft
+  /textcraft/word-choice:
+    post:
+      consumes:
+      - application/json
+      description: Recommends better word choices while maintaining the original meaning.
+      parameters:
+      - description: Word Choice request payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.WordChoiceReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.WordChoiceResp'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/errors.Errors'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/errors.Errors'
+      summary: Suggest alternative word choices
+      tags:
+      - Textcraft
+swagger: "2.0"

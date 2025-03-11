@@ -1,0 +1,118 @@
+/*
+MIT License
+
+Copyright (c) 2025 Fluora
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+
+// Code generated automatically. DO NOT EDIT.
+
+package {{.Package}}
+
+import (
+	"fmt"
+
+	"github.com/Ja7ad/fluora/internal/types"
+)
+
+const raw{{.Title}}Instruction = `
+### Description
+  {{.Description}}
+
+### Tasks
+{{range .Tasks}}  - {{.}}
+{{end}}
+
+### Rules
+{{range .Rules}}  - {{.}}
+{{end}}
+
+### Input Format (JSON)
+{{.InputFormat}}
+
+### Output Format (JSON)
+{{.OutputFormat}}
+
+### Additional Notes (optional)
+{{range .AdditionalNotes}}  - {{.}}
+{{end}}
+`
+
+// {{.Title}}Instruction {{.InstructionInfo}}
+type {{.Title}}Instruction struct {
+	temperature       float32
+	topP              float32
+	topK              int32
+	maxOutputToken    int32
+	frequencyPenalty  float32
+	presencePenalty   float32
+	repetitionPenalty float32
+}
+
+func New{{.Title}}Instruction() types.Instructor {
+	return &{{.Title}}Instruction{
+		temperature:       {{.TemperatureConfig}},
+		topP:              {{.TopPConfig}},
+		topK:              {{.TopKConfig}},
+		maxOutputToken:    {{.MaxOutputTokenConfig}},
+		frequencyPenalty:  {{.FrequencyPenaltyConfig}},
+		presencePenalty:   {{.PresencePenaltyConfig}},
+		repetitionPenalty: {{.RepetitionPenaltyConfig}},
+	}
+}
+
+func (*{{.Title}}Instruction) Title() string { return "{{.InstructionTitle}}" }
+func (*{{.Title}}Instruction) Info() string { return "{{.InstructionInfo}}" }
+func (*{{.Title}}Instruction) Version() string { return "{{.InstructionVersion}}" }
+func (x *{{.Title}}Instruction) Temperature() float32 { return x.temperature }
+func (x *{{.Title}}Instruction) TopP() float32 { return x.topP }
+func (x *{{.Title}}Instruction) TopK() int32 { return x.topK }
+func (x *{{.Title}}Instruction) MaxOutputToken() int32 { return x.maxOutputToken }
+func (x *{{.Title}}Instruction) FrequencyPenalty() float32 { return x.frequencyPenalty }
+func (x *{{.Title}}Instruction) PresencePenalty() float32 { return x.presencePenalty }
+func (x *{{.Title}}Instruction) RepetitionPenalty() float32 { return x.repetitionPenalty }
+func (x *{{.Title}}Instruction) Route() string { return "{{.InstructionRoute}}" }
+func (*{{.Title}}Instruction) Instruction() string { return raw{{.Title}}Instruction }
+
+func (x *{{.Title}}Instruction) AIProviders() map[types.AIProvider]map[string]struct{} {
+	return map[types.AIProvider]map[string]struct{}{
+{{- range $key, $values := .Models }}
+		"{{$key}}": {
+{{- range $index, $value := $values }}
+			"{{$value}}": {},
+{{- end }}
+		},
+{{- end }}
+	}
+}
+
+func (x *{{.Title}}Instruction) ValidateProvider(provider, model string) error {
+    models, ok := x.AIProviders()[types.AIProvider(provider)]
+	if !ok {
+		return fmt.Errorf("invalid AI provider: %s", provider)
+	}
+
+	_, ok = models[model]
+	if !ok {
+		return fmt.Errorf("invalid model: %s", model)
+	}
+
+	return nil
+}

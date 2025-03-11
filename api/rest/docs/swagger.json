@@ -1,0 +1,677 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "An extensible AI toolkit built in Go for generative AI applications.",
+        "title": "Fluora API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "127.0.0.1:8080",
+    "basePath": "/",
+    "paths": {
+        "/textcraft": {
+            "get": {
+                "description": "Retrieve all available text transformation services",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Textcraft"
+                ],
+                "summary": "List textcraft toolkits",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/dto.ServiceListResp"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/textcraft/casualize": {
+            "post": {
+                "description": "Modifies the text to sound more friendly and conversational.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Textcraft"
+                ],
+                "summary": "Convert text into a casual tone",
+                "parameters": [
+                    {
+                        "description": "Casualize request payload",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.CasualizeReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.CasualizeResp"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/errors.Errors"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/errors.Errors"
+                        }
+                    }
+                }
+            }
+        },
+        "/textcraft/expand": {
+            "post": {
+                "description": "Enhances the sentence by making it more detailed and informative.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Textcraft"
+                ],
+                "summary": "Expand a sentence",
+                "parameters": [
+                    {
+                        "description": "Expand request payload",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.ExpandReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ExpandResp"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/errors.Errors"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/errors.Errors"
+                        }
+                    }
+                }
+            }
+        },
+        "/textcraft/formalize": {
+            "post": {
+                "description": "Converts informal text into a professional and formal tone",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Textcraft"
+                ],
+                "summary": "Formalize a sentence",
+                "parameters": [
+                    {
+                        "description": "Formalize request payload",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.FormalizeReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.FormalizeResp"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/errors.Errors"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/errors.Errors"
+                        }
+                    }
+                }
+            }
+        },
+        "/textcraft/grammar": {
+            "post": {
+                "description": "Fixes grammar mistakes while preserving the original style",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Textcraft"
+                ],
+                "summary": "Correct grammar mistakes",
+                "parameters": [
+                    {
+                        "description": "Grammar correction request payload",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.GrammarReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.GrammarResp"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/errors.Errors"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/errors.Errors"
+                        }
+                    }
+                }
+            }
+        },
+        "/textcraft/rewrite": {
+            "post": {
+                "description": "Suggests alternative phrasings while maintaining meaning.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Textcraft"
+                ],
+                "summary": "Rewrite a sentence",
+                "parameters": [
+                    {
+                        "description": "Rewrite request payload",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.RewriteReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.RewriteResp"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/errors.Errors"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/errors.Errors"
+                        }
+                    }
+                }
+            }
+        },
+        "/textcraft/shorten": {
+            "post": {
+                "description": "Makes a sentence more concise while preserving its meaning",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Textcraft"
+                ],
+                "summary": "Shorten a sentence",
+                "parameters": [
+                    {
+                        "description": "Shorten request payload",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.ShortenReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ShortenResp"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/errors.Errors"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/errors.Errors"
+                        }
+                    }
+                }
+            }
+        },
+        "/textcraft/word-choice": {
+            "post": {
+                "description": "Recommends better word choices while maintaining the original meaning.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Textcraft"
+                ],
+                "summary": "Suggest alternative word choices",
+                "parameters": [
+                    {
+                        "description": "Word Choice request payload",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.WordChoiceReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.WordChoiceResp"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/errors.Errors"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/errors.Errors"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "dto.CasualizeReq": {
+            "type": "object",
+            "properties": {
+                "language": {
+                    "type": "string"
+                },
+                "model": {
+                    "type": "string"
+                },
+                "provider": {
+                    "type": "string"
+                },
+                "sentence": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.CasualizeResp": {
+            "type": "object",
+            "properties": {
+                "casualized_sentence": {
+                    "type": "string"
+                },
+                "general": {
+                    "$ref": "#/definitions/dto.Header"
+                },
+                "original_sentence": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.ExpandReq": {
+            "type": "object",
+            "properties": {
+                "language": {
+                    "type": "string"
+                },
+                "model": {
+                    "type": "string"
+                },
+                "provider": {
+                    "type": "string"
+                },
+                "sentence": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.ExpandResp": {
+            "type": "object",
+            "properties": {
+                "expand_sentence": {
+                    "type": "string"
+                },
+                "general": {
+                    "$ref": "#/definitions/dto.Header"
+                },
+                "original_sentence": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.FormalizeReq": {
+            "type": "object",
+            "properties": {
+                "language": {
+                    "type": "string"
+                },
+                "model": {
+                    "type": "string"
+                },
+                "provider": {
+                    "type": "string"
+                },
+                "sentence": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.FormalizeResp": {
+            "type": "object",
+            "properties": {
+                "formalized_sentence": {
+                    "type": "string"
+                },
+                "general": {
+                    "$ref": "#/definitions/dto.Header"
+                },
+                "original_sentence": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.GrammarReq": {
+            "type": "object",
+            "properties": {
+                "language": {
+                    "type": "string"
+                },
+                "model": {
+                    "type": "string"
+                },
+                "provider": {
+                    "type": "string"
+                },
+                "sentence": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.GrammarResp": {
+            "type": "object",
+            "properties": {
+                "corrected": {
+                    "type": "string"
+                },
+                "general": {
+                    "$ref": "#/definitions/dto.Header"
+                },
+                "original": {
+                    "type": "string"
+                },
+                "word_suggestions": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "dto.Header": {
+            "type": "object",
+            "properties": {
+                "model": {
+                    "type": "string"
+                },
+                "provider": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.RewriteReq": {
+            "type": "object",
+            "properties": {
+                "language": {
+                    "type": "string"
+                },
+                "model": {
+                    "type": "string"
+                },
+                "num_suggestions": {
+                    "type": "integer"
+                },
+                "provider": {
+                    "type": "string"
+                },
+                "sentence": {
+                    "type": "string"
+                },
+                "tone": {
+                    "$ref": "#/definitions/dto.RewriteTone"
+                }
+            }
+        },
+        "dto.RewriteResp": {
+            "type": "object",
+            "properties": {
+                "general": {
+                    "$ref": "#/definitions/dto.Header"
+                },
+                "original_sentence": {
+                    "type": "string"
+                },
+                "rewritten_sentence": {
+                    "type": "string"
+                },
+                "suggestions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "dto.RewriteTone": {
+            "type": "string",
+            "enum": [
+                "formal",
+                "informal",
+                "neutral"
+            ],
+            "x-enum-varnames": [
+                "Formal",
+                "Informal",
+                "Neutral"
+            ]
+        },
+        "dto.ServiceListResp": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "providers": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "route": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.ShortenReq": {
+            "type": "object",
+            "properties": {
+                "language": {
+                    "type": "string"
+                },
+                "model": {
+                    "type": "string"
+                },
+                "provider": {
+                    "type": "string"
+                },
+                "sentence": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.ShortenResp": {
+            "type": "object",
+            "properties": {
+                "general": {
+                    "$ref": "#/definitions/dto.Header"
+                },
+                "original_sentence": {
+                    "type": "string"
+                },
+                "shortened_sentence": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.WordChoiceReq": {
+            "type": "object",
+            "properties": {
+                "language": {
+                    "type": "string"
+                },
+                "model": {
+                    "type": "string"
+                },
+                "num_suggestions": {
+                    "type": "integer"
+                },
+                "provider": {
+                    "type": "string"
+                },
+                "sentence": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.WordChoiceResp": {
+            "type": "object",
+            "properties": {
+                "general": {
+                    "$ref": "#/definitions/dto.Header"
+                },
+                "original_sentence": {
+                    "type": "string"
+                },
+                "word_suggestions": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "errors.Errors": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "details": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "message": {
+                    "type": "string"
+                },
+                "statusCode": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}
