@@ -1,0 +1,67 @@
+builds:
+  - id: fluora
+    main: ./cmd/fluora/main.go
+    dir: ./
+    binary: fluora
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+      - android
+    goarch:
+      - "386"
+      - amd64
+      - arm
+      - arm64
+    goarm:
+      - "6"
+      - "7"
+    ignore:
+      - goos: linux
+        goarch: arm
+        goarm: "7"
+      - goos: windows
+        goarch: arm
+        goarm: "7"
+      - goos: android
+        goarch: arm
+        goarm: "6"
+      - goos: android
+        goarch: arm
+        goarm: "7"
+      - goos: android
+        goarch: "386"
+
+archives:
+  - builds:
+      - fluora
+    name_template: 'fluora_{{ .Version }}_{{ .Os }}_{{ .Arch }}'
+    format_overrides:
+      - goos: windows
+        format: zip
+    files:
+      - LICENSE
+
+nfpms:
+  - license: CC0-1.0 License
+    maintainer: Javad Rajabzadeh <ja7ad@live.com>
+    homepage: https://fluora.javad.dev
+    bindir: /usr/local/bin
+    description: An extensible Go-based AI toolkit to effortlessly build and serve powerful generative AI tools from structured instructions.
+    formats:
+      - deb
+      - rpm
+
+checksum:
+  name_template: 'fluora_checksums.txt'
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+      - Merge pull request
+      - Merge branch
