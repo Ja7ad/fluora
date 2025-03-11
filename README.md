@@ -111,6 +111,16 @@ It provides:
 }
 ```
 
+## 📎 **TODO**
+- [ ] support ratelimit
+- [ ] support openai
+- [ ] support ollama
+- [ ] client API key support instead configuration ai if not configurated
+- [ ] add codecov report
+- [ ] add linter
+- [ ] improve code coverage test
+- [ ] add subtitle translator instruction feature
+
 
 ## 📜 **License**
 Fluora is released under the [**MIT License**](/LICENSE).
