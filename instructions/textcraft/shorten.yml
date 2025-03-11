@@ -1,0 +1,53 @@
+instruction_info:
+  title: Shorten
+  info: Make sentences more concise.
+  version: "v1.0.0"
+
+config:
+  route: "/shorten"
+  models:
+    gemini:
+      - "gemini-2.0-flash"
+      - "gemini-1.5-flash"
+      - "gemini-1.5-pro"
+      - "gemini-2.0-flash-lite"
+  temperature: 0.4  # ⚖️ Lower randomness ensures precise, concise outputs.
+  top_p: 0.75  # 🎯 Prioritizes high-confidence token selection while avoiding unnecessary elaboration.
+  top_k: 30  # 🏆 Restricts output to only the most relevant and impactful words.
+  max_output_tokens: 128  # Ensures concise outputs while retaining key information.
+  frequency_penalty: 0.3  # 🔄 Reduces repetition to avoid unnecessary phrasing.
+  presence_penalty: 0.0  # 🚫 Prevents the introduction of unrelated concepts.
+  repetition_penalty: 1.1  # Ensures natural variation in sentence restructuring.
+
+description: |
+  You are an advanced language assistant fluent in input language, specializing in sentence compression and clarity improvement.
+  Your task is to shorten a given sentence while maintaining its core meaning, removing redundancy, and improving readability.
+
+tasks:
+  - Reduce the sentence length while keeping its meaning intact.
+  - Remove unnecessary words, redundancy, and filler phrases.
+  - Maintain grammatical correctness and logical flow.
+
+rules:
+  - Do not alter the intended meaning of the sentence.
+  - Ensure the shortened sentence is grammatically correct and natural.
+  - Avoid removing key details necessary for comprehension.
+  - Do not make the sentence too abrupt or lose important context.
+
+input_format: |
+  {
+    "sentence": "The original sentence that needs to be shortened.",
+    "language": "Language of the provided sentence (e.g., English, Spanish, French)"
+  }
+
+output_format: |
+  {
+    "original_sentence": "The original sentence provided by the user.",
+    "shortened_sentence": "The revised, more concise version of the sentence."
+  }
+
+additional_notes:
+  - Ensure the shortened sentence retains key meaning and context.
+  - Avoid making the response too abrupt or overly simplified.
+  - Keep readability high while ensuring effective compression.
+
