@@ -114,14 +114,14 @@ It provides:
 ```
 
 ## 📎 **TODO**
-- [ ] support ratelimit
-- [ ] support openai
-- [ ] support ollama
-- [ ] client API key support instead configuration ai if not configurated
-- [ ] add codecov report
-- [ ] add linter
-- [ ] improve code coverage test
-- [ ] add subtitle translator instruction feature
+- [ ] Support rate limiting  
+- [ ] Add support for OpenAI  
+- [ ] Add support for Ollama  
+- [ ] Allow client-provided API keys when AI configuration is not set  
+- [ ] Integrate Codecov for test coverage reports  
+- [ ] Add a linter for code quality enforcement  
+- [ ] Improve code coverage in tests  
+- [ ] Implement a subtitle translation instruction feature
 
 
 ## 📜 **License**
